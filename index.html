@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nimbus — Banking & Shop</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@500;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+
+<!-- GTM container snippet goes here once you've created one. See README.md -->
+
+</head>
+<body>
+
+<nav class="site-nav">
+  <div class="brand">Nimbus<span>.</span></div>
+  <ul>
+    <li><a href="savings-account/apply.html">Savings Account</a></li>
+    <li><a href="term-insurance/quote.html">Term Insurance</a></li>
+    <li><a href="shop/index.html">Shop</a></li>
+    <li><a href="login.html">Log in</a></li>
+  </ul>
+</nav>
+
+<header class="banner">
+  <div class="container">
+    <h1>Banking, protection, and everyday shopping — all in one place.</h1>
+    <p class="lede">Nimbus is a practice sandbox bringing together a savings account, term insurance, and an online shop, so every click here generates a real, trackable event.</p>
+
+    <div class="banner-grid" id="banner-grid">
+      <a href="savings-account/apply.html" class="banner-card" data-promo-id="savings_account" data-promo-name="Open a Savings Account">
+        <span class="eyebrow">Banking</span>
+        <h3>Open a Savings Account</h3>
+        <p>Zero balance, instant onboarding, 6.5% interest p.a.</p>
+      </a>
+      <a href="term-insurance/quote.html" class="banner-card" data-promo-id="term_insurance" data-promo-name="Get a Term Insurance Quote">
+        <span class="eyebrow">Protection</span>
+        <h3>Get a Term Insurance Quote</h3>
+        <p>Cover up to ₹1 crore, premiums starting ₹499/month.</p>
+      </a>
+      <a href="shop/index.html" class="banner-card" data-promo-id="ecommerce_promo" data-promo-name="Shop the Festive Sale">
+        <span class="eyebrow">Shop</span>
+        <h3>Shop the Festive Sale</h3>
+        <p>Up to 40% off electronics and accessories.</p>
+      </a>
+    </div>
+  </div>
+</header>
+
+<section class="section">
+  <div class="container">
+    <h2>Why people choose Nimbus</h2>
+    <div class="section-grid">
+      <div class="tile">
+        <h3>One login, every journey</h3>
+        <p>Banking, insurance, and shopping under a single account.</p>
+      </div>
+      <div class="tile">
+        <h3>Transparent pricing</h3>
+        <p>No hidden charges on accounts, premiums, or checkout.</p>
+      </div>
+      <div class="tile">
+        <h3>Built for testing</h3>
+        <p>Every interaction on this site fires a documented GA4 event.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>Nimbus — a free practice sandbox for GA4, GTM & BigQuery. Not a real bank or store.</footer>
+
+<script src="assets/dataLayer-events.js"></script>
+<script>
+  // view_promotion: fire once per banner card when it scrolls into view
+  document.querySelectorAll('.banner-card').forEach(function (card, index) {
+    trackOnView(card, 'view_promotion', {
+      promotion_id: card.dataset.promoId,
+      promotion_name: card.dataset.promoName,
+      creative_slot: 'homepage_banner_' + (index + 1)
+    });
+
+    // select_promotion: fire on click, just before navigating
+    card.addEventListener('click', function () {
+      trackEvent('select_promotion', {
+        promotion_id: card.dataset.promoId,
+        promotion_name: card.dataset.promoName,
+        creative_slot: 'homepage_banner_' + (index + 1)
+      });
+    });
+  });
+</script>
+
+</body>
+</html>

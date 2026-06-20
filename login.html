@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Log in — Nimbus</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@500;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<nav class="site-nav">
+  <div class="brand"><a href="index.html" style="text-decoration:none;color:inherit;">Nimbus<span>.</span></a></div>
+  <ul>
+    <li><a href="savings-account/apply.html">Savings Account</a></li>
+    <li><a href="term-insurance/quote.html">Term Insurance</a></li>
+    <li><a href="shop/index.html">Shop</a></li>
+    <li><a href="login.html">Log in</a></li>
+  </ul>
+</nav>
+
+<section class="section">
+  <div class="container">
+    <h2 style="text-align:center;">Welcome back</h2>
+    <form class="form-card" id="login-form">
+      <div class="field">
+        <label for="login-email">Email address</label>
+        <input type="email" id="login-email" required>
+      </div>
+      <div class="field">
+        <label for="login-password">Password</label>
+        <input type="password" id="login-password" required>
+      </div>
+      <button type="submit" class="btn btn-primary btn-block">Log in</button>
+      <p style="text-align:center; margin-top:18px; font-size:0.9rem; color:var(--muted);">
+        New here? <a href="signup.html" style="color:var(--emerald); font-weight:600;">Create an account</a>
+      </p>
+    </form>
+  </div>
+</section>
+
+<footer>Nimbus — a free practice sandbox for GA4, GTM & BigQuery.</footer>
+
+<script src="assets/dataLayer-events.js"></script>
+<script>
+  document.getElementById('login-form').addEventListener('submit', function (e) {
+    e.preventDefault();
+
+    // login: fires on successful (simulated) login
+    trackEvent('login', { method: 'email' });
+
+    window.location.href = 'index.html?logged_in=true';
+  });
+</script>
+
+</body>
+</html>
