@@ -1,0 +1,32 @@
+{
+  "pages": [
+    { "path": "index.html", "journey": "homepage", "description": "Banner linking to savings account, term insurance, and shop; plus a value-props section." },
+    { "path": "savings-account/apply.html", "journey": "savings_account", "description": "3-step application form: personal details, KYC details, confirm." },
+    { "path": "term-insurance/quote.html", "journey": "term_insurance", "description": "Premium quote calculator based on age, cover amount, smoking habit." },
+    { "path": "term-insurance/purchase.html", "journey": "term_insurance", "description": "Plan selection (3 tiers) and purchase confirmation." },
+    { "path": "shop/index.html", "journey": "ecommerce", "description": "Product listing — 6 SKUs across audio, wearables, accessories, home." },
+    { "path": "shop/product.html", "journey": "ecommerce", "description": "Product detail page, reads ?id= param against an inline catalog." },
+    { "path": "shop/cart.html", "journey": "ecommerce", "description": "Cart summary read from sessionStorage." },
+    { "path": "shop/checkout.html", "journey": "ecommerce", "description": "Payment form, order summary, confirmation." },
+    { "path": "login.html", "journey": "auth", "description": "Generic login form." },
+    { "path": "signup.html", "journey": "auth", "description": "Generic signup form." }
+  ],
+  "events": [
+    { "name": "view_promotion", "fired_from": ["index.html"], "params": ["promotion_id", "promotion_name", "creative_slot"] },
+    { "name": "select_promotion", "fired_from": ["index.html"], "params": ["promotion_id", "promotion_name", "creative_slot"] },
+    { "name": "form_start", "fired_from": ["savings-account/apply.html"], "params": ["form_id"] },
+    { "name": "form_step", "fired_from": ["savings-account/apply.html"], "params": ["form_id", "step_number", "step_name"] },
+    { "name": "form_submit", "fired_from": ["savings-account/apply.html"], "params": ["form_id"] },
+    { "name": "generate_lead", "fired_from": ["savings-account/apply.html", "term-insurance/quote.html"], "params": ["lead_type", "currency", "cover_amount", "premium_estimate"] },
+    { "name": "select_item", "fired_from": ["term-insurance/purchase.html", "shop/index.html"], "params": ["item_list_name", "items"] },
+    { "name": "purchase", "fired_from": ["term-insurance/purchase.html", "shop/checkout.html"], "params": ["transaction_id", "value", "currency", "items", "shipping", "tax"] },
+    { "name": "view_item_list", "fired_from": ["shop/index.html"], "params": ["item_list_id", "item_list_name", "items"] },
+    { "name": "view_item", "fired_from": ["shop/product.html"], "params": ["value", "currency", "items"] },
+    { "name": "add_to_cart", "fired_from": ["shop/product.html"], "params": ["value", "currency", "items"] },
+    { "name": "view_cart", "fired_from": ["shop/cart.html"], "params": ["value", "currency", "items"] },
+    { "name": "begin_checkout", "fired_from": ["shop/checkout.html"], "params": ["value", "currency", "items"] },
+    { "name": "add_payment_info", "fired_from": ["shop/checkout.html"], "params": ["value", "currency", "payment_type", "items"] },
+    { "name": "login", "fired_from": ["login.html"], "params": ["method"] },
+    { "name": "sign_up", "fired_from": ["signup.html"], "params": ["method"] }
+  ]
+}
